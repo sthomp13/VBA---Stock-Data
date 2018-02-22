@@ -1,0 +1,42 @@
+
+Sub Stock_Analysis()
+
+For Each ws In Worksheets
+ws.Activate
+'Assign Variables
+    Dim Ticker As String
+    Dim TradeVolume As Double
+    TradeVolume = 0
+    
+    Dim Volume_Summary As Integer
+        Volume_Summary = 2
+    Lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+'Loops
+For i = 2 To Lastrow
+
+
+'Conditions
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    
+    
+        Ticker = Cells(i, 1).Value
+        TradeVolume = TradeVolume + Cells(i, 7).Value
+            
+            Range("J" & Volume_Summary).Value = Ticker
+            
+            Range("K" & Volume_Summary).Value = TradeVolume
+            
+            Volume_Summary = Volume_Summary + 1
+             TradeVolume = 0
+Else
+
+    TradeVolume = TradeVolume + Cells(i, 7).Value
+
+        End If
+
+            Next i
+            Next ws
+
+
+End Sub
